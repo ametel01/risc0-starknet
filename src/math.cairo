@@ -25,7 +25,7 @@ pub trait BitShift<T> {
     fn shr(x: T, n: T) -> T;
 }
 
-pub impl U8BitShift of BitShift<u8> {
+impl U8BitShift of BitShift<u8> {
     fn shl(x: u8, n: u8) -> u8 {
         (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u8>::max().into()).try_into().unwrap()
     }
@@ -35,7 +35,7 @@ pub impl U8BitShift of BitShift<u8> {
     }
 }
 
-pub impl U16BitShift of BitShift<u16> {
+impl U16BitShift of BitShift<u16> {
     fn shl(x: u16, n: u16) -> u16 {
         (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u16>::max().into()).try_into().unwrap()
     }
@@ -45,7 +45,7 @@ pub impl U16BitShift of BitShift<u16> {
     }
 }
 
-pub impl U32BitShift of BitShift<u32> {
+impl U32BitShift of BitShift<u32> {
     fn shl(x: u32, n: u32) -> u32 {
         (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u32>::max().into()).try_into().unwrap()
     }
@@ -55,7 +55,7 @@ pub impl U32BitShift of BitShift<u32> {
     }
 }
 
-pub impl U64BitShift of BitShift<u64> {
+impl U64BitShift of BitShift<u64> {
     fn shl(x: u64, n: u64) -> u64 {
         (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u64>::max().into()).try_into().unwrap()
     }
@@ -65,7 +65,7 @@ pub impl U64BitShift of BitShift<u64> {
     }
 }
 
-pub impl U128BitShift of BitShift<u128> {
+impl U128BitShift of BitShift<u128> {
     fn shl(x: u128, n: u128) -> u128 {
         let res = WideMul::wide_mul(x, pow(2, n));
         res.low
@@ -76,7 +76,7 @@ pub impl U128BitShift of BitShift<u128> {
     }
 }
 
-pub impl U256BitShift of BitShift<u256> {
+impl U256BitShift of BitShift<u256> {
     fn shl(x: u256, n: u256) -> u256 {
         let (r, _) = OverflowingMul::overflowing_mul(x, pow(2, n));
         r
