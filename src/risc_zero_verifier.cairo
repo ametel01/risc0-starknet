@@ -15,16 +15,6 @@ struct ReceiptClaim {
     output: u256,
 }
 
-impl SystemExitCodeIntoU32 of Into<SystemExitCode, u32> {
-    fn into(self: SystemExitCode) -> u32 {
-        match self {
-            SystemExitCode::Halted => 0,
-            SystemExitCode::Paused => 1,
-            SystemExitCode::SystemSplit => 2,
-        }
-    }
-}
-
 mod receipt_claim_lib {
     use super::{ReceiptClaim, SystemExitCode, ExitCode, Output, SystemExitCodeIntoU32};
     use super::output_lib::DigestTrait;
@@ -149,6 +139,16 @@ enum SystemExitCode {
     Halted,
     Paused,
     SystemSplit
+}
+
+impl SystemExitCodeIntoU32 of Into<SystemExitCode, u32> {
+    fn into(self: SystemExitCode) -> u32 {
+        match self {
+            SystemExitCode::Halted => 0,
+            SystemExitCode::Paused => 1,
+            SystemExitCode::SystemSplit => 2,
+        }
+    }
 }
 
 #[derive(Drop)]
