@@ -1,5 +1,5 @@
 use core::num::traits::{WideMul, OverflowingMul};
-use core::integer::BoundedInt;
+use core::num::traits::Bounded;
 /// Raise a number to a power.
 /// O(log n) time complexity.
 /// * `base` - The number to raise.
@@ -27,7 +27,7 @@ pub trait BitShift<T> {
 
 impl U8BitShift of BitShift<u8> {
     fn shl(x: u8, n: u8) -> u8 {
-        (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u8>::max().into()).try_into().unwrap()
+        (WideMul::wide_mul(x, pow(2, n)) & Bounded::<u8>::MAX.into()).try_into().unwrap()
     }
 
     fn shr(x: u8, n: u8) -> u8 {
@@ -37,7 +37,7 @@ impl U8BitShift of BitShift<u8> {
 
 impl U16BitShift of BitShift<u16> {
     fn shl(x: u16, n: u16) -> u16 {
-        (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u16>::max().into()).try_into().unwrap()
+        (WideMul::wide_mul(x, pow(2, n)) & Bounded::<u16>::MAX.into()).try_into().unwrap()
     }
 
     fn shr(x: u16, n: u16) -> u16 {
@@ -47,7 +47,7 @@ impl U16BitShift of BitShift<u16> {
 
 impl U32BitShift of BitShift<u32> {
     fn shl(x: u32, n: u32) -> u32 {
-        (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u32>::max().into()).try_into().unwrap()
+        (WideMul::wide_mul(x, pow(2, n)) & Bounded::<u32>::MAX.into()).try_into().unwrap()
     }
 
     fn shr(x: u32, n: u32) -> u32 {
@@ -57,7 +57,7 @@ impl U32BitShift of BitShift<u32> {
 
 impl U64BitShift of BitShift<u64> {
     fn shl(x: u64, n: u64) -> u64 {
-        (WideMul::wide_mul(x, pow(2, n)) & BoundedInt::<u64>::max().into()).try_into().unwrap()
+        (WideMul::wide_mul(x, pow(2, n)) & Bounded::<u64>::MAX.into()).try_into().unwrap()
     }
 
     fn shr(x: u64, n: u64) -> u64 {
